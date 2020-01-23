@@ -68,7 +68,7 @@ function p1_move()
   print("The current player is", current_player)
   while true
     #try
-      row, col = split(input("Give a row and a column coordinate: "))
+      row, col = split(input("Give a row and a column coordinate: "), ',')
       row, col = parse(Int64,row), parse(Int64,col)
       if board[row][col] == " "
         board[row][col] = current_player
@@ -172,7 +172,12 @@ function is_winner(player)
         return true
     end
   end
-  return false
+  for row in board
+    if " " in row
+      return false
+    end
+  end
+  return true
 end
 
 function game_over()
